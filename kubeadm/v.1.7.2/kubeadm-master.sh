@@ -23,6 +23,12 @@ setenforce 0
 fi
 systemctl disable firewalld
 systemctl stop firewalld
+systemctl disable firewalld.service
+systemctl stop firewalld.service
+yum install -y iptables-services
+systemctl start iptables.service
+systemctl enable iptables.service
+modprobe br_netfilter
 
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 
@@ -143,3 +149,4 @@ wget https://raw.githubusercontent.com/coreos/flannel/${FLANNEL_VERSION}/Documen
 sed -i 's/quay.io\/coreos\/flannel/registry.cn-hangzhou.aliyuncs.com\/szss_k8s\/flannel/g' ./kube-flannel.yml
 kubectl --namespace kube-system apply -f ./kube-flannel.yml
 echo "Flannel created!"
+yum update -y
