@@ -41,7 +41,7 @@ echo '============================================================'
 cat >> /etc/yum.repos.d/docker.repo <<EOF
 [docker-repo]
 name=Docker Repository
-baseurl=http://mirrors.aliyun.com/docker-engine/yum/repo/main/centos/7
+baseurl=https://yum.dockerproject.org/repo/main/centos/7
 enabled=1
 gpgcheck=0
 EOF
